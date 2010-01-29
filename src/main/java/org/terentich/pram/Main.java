@@ -1,9 +1,11 @@
-﻿public class Main {
+package org.terentich.pram;
 
-	public static void main(String... args) {
+import org.jdesktop.application.Application;
 
-		System.out.println("Hello world!");
+public class Main {
 
+	public static void main(String[] args) {
+		Application.launch(GUIPRAM.class, args);
 	}
 
 }

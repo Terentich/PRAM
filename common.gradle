@@ -1,0 +1,93 @@
+vendorId = 'org.terentich'
+vendorTitle = 'Terentich organization'
+mainclass = vendorId + '.' + project.name.toLowerCase() + '.Main'
+jdkVersion = System.getProperty("java.version")
+buildTimestamp = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss z").format(new Date())
+
+// Configure executable jar-file
+gradle.taskGraph.whenReady {taskGraph ->
+		if (projectType == 'application') {
+			def classpath = sourceSets.main.compileClasspath.collect{
+				libsDirName + File.separator + it.name
+			}.join(' ')
+
+			jar.manifest.attributes 'Main-Class': mainclass, 'Class-Path': classpath
+		}
+}
+
+//artifacts {
+//	archives simpleJar
+//}
+
+// Configure all jar-files
+def allJars = tasks.withType(Jar)
+allJars.allObjects { task ->
+	configure(task) {
+		manifest.attributes 'Implementation-Title': project.name,
+			'Implementation-Version': version, 
+			'Implementation-Vendor': vendorTitle,			
+			'Implementation-Vendor-Id': vendorId,
+			'Build-By': author,
+			'Build-Jdk': jdkVersion,
+			'Build-Date': buildTimestamp,
+			'License': project.license,
+			'Description' : project.description
+	}
+}
+task jars(dependsOn: allJars)
+
+javadoc {
+	project.configure(options) {
+		charSet = "UTF-8"
+		memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+		docTitle = project.name
+		windowTitle = project.name
+		header = '<b>' + project.name + '</b>'
+		bottom = 'Contact via <a href="mailto:' + email + '?Subject=' + project.name + '">e-mail</a>' + ' for feedback.'
+		author = 'true'
+		use = 'true'
+		links('http://download.oracle.com/javase/6/docs/api/')
+	}
+}
+
+if (projectType == 'library') {
+	task sourcesJar(type: Jar) {
+		classifier = 'sources'
+		from sourceSets.main.allSource
+	}
+
+	task testJar(type: Jar) {
+		classifier = 'test'
+		from sourceSets.test.classes
+	}
+
+	task javadocJar(type: Jar, dependsOn: javadoc) {
+		classifier = 'javadoc'
+		from javadoc.destinationDir
+	}
+	
+}
+
+task distZip(type: Zip, dependsOn: allJars) {
+	def zipPath = archiveName.replace('.zip', '')
+
+	if (projectType == 'application') {
+		into(zipPath) {	
+			from configurations.default.allArtifactFiles
+		}
+	
+		into(zipPath + File.separator + libsDirName) {	
+			from configurations.default
+		}
+	}
+	
+	if (projectType == 'library') {
+		into(zipPath) {
+			from libsDir
+		}
+		
+		doLast {
+			ant.checksum(file: archivePath, todir: archivePath.parentFile)
+		}
+	}
+}

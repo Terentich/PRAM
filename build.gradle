@@ -1,0 +1,37 @@
+projectType = 'application'
+license = 'GPLv3'
+description = 'Java based GUI application'
+author = 'Alexey V. Terentyev'
+email = 'terentich@gmail.com'
+
+apply plugin: 'java'
+apply from: 'common.gradle'
+
+defaultTasks 'clean', 'javadoc', 'build'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'commons-lang', name: 'commons-lang', version: '2.+'
+	compile group: 'commons-cli', name: 'commons-cli', version: '1.+'
+	compile group: 'commons-math', name: 'commons-math', version: '1.+'
+	compile group: 'commons-io', name: 'commons-io', version: '2.+'
+	compile group: 'commons-logging', name: 'commons-logging', version: '1.+'	
+	compile group: 'com.miglayout', name: 'miglayout', version: '3.+'	
+	//compile group: 'org.java.net.substance', name: 'substance', version: '6.+'	
+	
+	compile fileTree(dir: 'libs', include: '*.jar')
+	
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+uploadArchives {
+    repositories {
+       flatDir(dirs: file('repos'))
+    }
+}
