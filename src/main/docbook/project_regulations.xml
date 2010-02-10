@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<article lang="ru">
+		<articleinfo>
+			<title>PRAM. Устав проекта</title>
+			<author>
+				<firstname>Алексей</firstname>
+				<surname>Терентьев</surname>
+			</author>
+			<copyright>
+				<year>2010</year>
+				<holder>Алексей Терентьев</holder>
+			</copyright>
+
+         <revhistory>
+            <revision>
+               <revnumber>0.1</revnumber>
+               <date>2010-11-03</date>
+               <authorinitials>Терентьев А. В.</authorinitials>
+               <revremark>Черновая версия</revremark>
+            </revision>
+         </revhistory>
+		</articleinfo>
+
+      <abstract>
+         <para>
+         Проект по реализации графического интерпретатора ПРАМ-машины.
+         </para>
+      </abstract>
+
+      <preface id="Preface">
+         <title>Предисловие</title>
+         <para>
+         Процесс подготовки программ для цифрового компьютера -
+         это очень увлекательное занятие.
+         </para>
+      </preface>
+
+		<section id="Description">
+			<title>Описание проекта</title>
+			<indexterm><primary>описание</primary></indexterm>
+			<para>
+			Первый абзац первого раздела.
+			</para>
+		</section>
+
+		<section id="Goals">
+			<title>Цели проекта</title>
+			<indexterm><primary>цели</primary></indexterm>
+			<para>
+			Первый абзац первого раздела.
+			</para>
+		</section>
+
+      <appendix id="Examples">
+         <title>Пример приложений</title>
+         <para>
+         Это иллюстрация приложений в книге.
+         Приложения имеют ту же внутреннюю структуру,
+         что и глава.
+         </para>
+      </appendix>
+
+		<section id="Dates">
+			<title>Сроки проекта</title>
+         <indexterm><primary>сроки</primary></indexterm>
+			<para>
+			Первый абзац второго раздела.
+			</para>
+			<note>
+			   <para>
+			   Примечание
+			   </para>
+			</note>
+
+			<tip>
+			   <para>
+			   Подсказка
+			   </para>
+			</tip>
+			
+		</section>
+	
+		<section id="Roles">
+   		<indexterm><primary>участники</primary></indexterm>
+			<title>Участники проекта</title>
+			<para>
+			Первый абзац третьего раздела.
+			</para>
+		</section>
+
+   <index id="Symbols" />
+
+   <bibliography id="Bibliography">
+      <bibliomixed id="theDocBook">
+         <abbrev>theDocBook</abbrev>
+         <author>
+            <firstname>Norman</firstname>
+            <surname>Walsh</surname>
+         </author>,
+         <author>
+            <firstname>Leonard</firstname>
+            <surname>Muellner</surname>
+         </author>.
+         <title>DocBook: The Definitive Guide.</title>
+         <publishername>O'Reilly &amp; Associates, Inc.</publishername>
+         ISBN: <isbn>156592-580-7</isbn>.
+         <bibliomisc>
+            <ulink url="http://www.docbook.org/tdg/en/html/docbook.html"/>
+         </bibliomisc>
+      </bibliomixed>
+   </bibliography>
+
+	</article>
